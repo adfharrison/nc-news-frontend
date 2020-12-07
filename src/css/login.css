@@ -1,0 +1,22 @@
+.loginContainer {
+  background-color: aquamarine;
+  width: 90%;
+  margin: 0 auto;
+}
+.loginTitle {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  border: solid red 2px;
+  font-size: 3rem;
+}
+.existingUser {
+  display: flex;
+  flex-direction: column;
+
+  border: solid green 2px;
+  font-size: 1.5rem;
+}
+.showSignup {
+  border: solid blue 2px;
+}
