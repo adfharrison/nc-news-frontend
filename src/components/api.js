@@ -9,14 +9,16 @@ export const getUsers = async () => {
   return data.users;
 };
 
-export const sendNewUser = (newUser) => {
-  return newsApi
-    .post('.users', {
-      newUser: {
-        username: 'this is a new user',
-        name: 'the user that is new, is new',
-        avatar_url: 'picture of avatar',
-      },
-    })
-    .then(({ data }) => {});
+export const sendNewUser = async (addUser) => {
+  const request = {
+    newUser: {
+      username: addUser.username,
+      name: addUser.name,
+      avatar_url: addUser.avatar_url,
+    },
+  };
+
+  const { data } = await newsApi.post('/users', request);
+
+  return data;
 };

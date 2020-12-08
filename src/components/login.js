@@ -3,14 +3,18 @@ import React from 'react';
 import Axios from 'axios';
 import { Link } from '@reach/router';
 
-import { getUsers } from './api';
+import { getUsers, sendNewUser } from './api';
+import Loading from './loading';
 
 class Login extends React.Component {
   state = {
     usernames: [],
     username: '',
     newUsername: '',
-
+    name: '',
+    avatar_url: '',
+    updateSuccess: false,
+    isLoading: true,
     showSignup: false,
   };
 
@@ -20,7 +24,7 @@ class Login extends React.Component {
       const usernames = users.map((user) => {
         return user.username;
       });
-      this.setState({ usernames });
+      this.setState({ usernames, isLoading: false });
     } catch (error) {
       console.log(error);
     }
@@ -40,10 +44,25 @@ class Login extends React.Component {
     }
   }
 
-  handleNewUserSubmit(event) {
+  async handleNewUserSubmit(event) {
     event.preventDefault();
+    try {
+      const newUser = {
+        username: this.state.newUsername,
+        name: this.state.name,
+        avatar_url: this.state.avatar_url,
+      };
+      const data = await sendNewUser(newUser);
+      if (data.newUser.username) {
+        this.setState({ updateSuccess: true });
+      }
 
-    this.props.verifyUser(true, true, this.state.newUsername);
+      if (this.state.updateSuccess) {
+        this.props.verifyUser(true, true, this.state.newUsername);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleShowSignup(event) {
@@ -51,17 +70,10 @@ class Login extends React.Component {
     this.setState({ showSignup: true });
   }
 
-  //   componentDidUpdate(prevProps, prevState){
-  //         const showSignup = this.state.showSignup !== prevState.showSignup
-
-  //         if(showSignup){
-  //             this.setState
-  //         }
-  //   }
-
   render() {
-    console.log(this.state, 'LOGIN STATE');
-    if (!this.state.showSignup) {
+    if (this.state.isLoading) {
+      return <Loading />;
+    } else if (!this.state.showSignup) {
       return (
         <div className='loginContainer'>
           <h1 className='loginTitle'>Login</h1>
@@ -135,6 +147,26 @@ class Login extends React.Component {
                     id='newUsername'
                     name='newUsername'
                     value={this.state.newUsername}
+                    onChange={(event) => this.handleChange(event)}
+                  ></input>
+                </label>
+                <label htmlFor='name'>
+                  Enter your name
+                  <input
+                    type='text'
+                    id='name'
+                    name='name'
+                    value={this.state.name}
+                    onChange={(event) => this.handleChange(event)}
+                  ></input>
+                </label>
+                <label htmlFor='avatar_url'>
+                  Enter your avatar URL
+                  <input
+                    type='text'
+                    id='avatar_url'
+                    name='avatar_url'
+                    value={this.state.avatar_url}
                     onChange={(event) => this.handleChange(event)}
                   ></input>
                 </label>

@@ -1,0 +1,30 @@
+.app {
+  background-color: cornsilk;
+}
+
+/* Header, title and nav */
+.header {
+  background-color: darkkhaki;
+}
+.title {
+  width: 80%;
+  margin: auto;
+  outline: solid blue 2px;
+  text-align: center;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  outline: solid green 2px;
+  width: 90%;
+  margin: 10px auto;
+  text-align: center;
+  height: 3rem;
+}
+
+.navButton {
+  height: 1.8rem;
+  font-size: 1.3rem;
+}
