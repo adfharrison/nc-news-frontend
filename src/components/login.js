@@ -92,6 +92,7 @@ class Login extends React.Component {
                   onChange={(event) => this.handleChange(event)}
                 ></input>
               </label>
+
               <button className='loginButton' type='submit'>
                 {' '}
                 Login{' '}
@@ -170,6 +171,7 @@ class Login extends React.Component {
                     onChange={(event) => this.handleChange(event)}
                   ></input>
                 </label>
+
                 <button className='loginButton' type='submit'>
                   {' '}
                   Submit + Login{' '}

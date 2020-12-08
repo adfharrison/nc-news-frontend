@@ -5,6 +5,10 @@
 /* Header, title and nav */
 .header {
   background-color: darkkhaki;
+  position: fixed;
+  width: 95%;
+  z-index: 20;
+  margin-bottom: 100px;
 }
 .title {
   width: 80%;
@@ -27,4 +31,8 @@
 .navButton {
   height: 1.8rem;
   font-size: 1.3rem;
+}
+
+.homeContent {
+  padding-top: 100px;
 }

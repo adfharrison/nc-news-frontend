@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-const Nav = () => {
-  const logout = () => {
-    props.logout();
-  };
+const Nav = (props) => {
   return (
     <div className='nav'>
       <Link to='/articles'>
@@ -14,7 +11,7 @@ const Nav = () => {
         <button className='navNewArticle navButton'>Create Article</button>
       </Link>
       <Link to='/login'>
-        <button className='navLogout navButton' onClick={() => this.logout()}>
+        <button className='navLogout navButton' onClick={() => props.logout()}>
           Logout
         </button>
       </Link>

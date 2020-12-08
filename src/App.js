@@ -1,5 +1,7 @@
 import './css/App.css';
 import './css/login.css';
+import './css/list.css';
+import './css/singleArticle.css';
 import React from 'react';
 import { Router } from '@reach/router';
 import Axios from 'axios';
@@ -40,8 +42,9 @@ class App extends React.Component {
   };
   render() {
     console.log(this.state, 'APP STATE');
+
     if (!this.state.isLoggedIn) {
-      return <Login verifyUser={this.verifyUser} path='/' />;
+      return <Login verifyUser={this.verifyUser} />;
     } else if (this.state.isLoading) {
       return <Loading />;
     } else {
@@ -53,7 +56,7 @@ class App extends React.Component {
           </div>
 
           <Router>
-            <Home path='/' />
+            <Home path='/home' />
             <Articles path='/articles' />
             <SingleArticle path='/articles/:article_id' />
             <AddArticle path='/articles/add_article' />

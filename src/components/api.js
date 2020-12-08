@@ -22,3 +22,15 @@ export const sendNewUser = async (addUser) => {
 
   return data;
 };
+
+export const getAllArticles = async () => {
+  const { data } = await newsApi.get('/articles');
+  return data.articles;
+};
+
+export const getArticleById = async (article_id) => {
+  const { data } = await newsApi.get(`/articles/${article_id}`, {
+    params: {},
+  });
+  return data.article;
+};
