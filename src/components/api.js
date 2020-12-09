@@ -34,3 +34,10 @@ export const getArticleById = async (article_id) => {
   });
   return data.article;
 };
+
+export const getCommentsById = async (article_id) => {
+  const { data } = await newsApi.get(`/articles/${article_id}/comments`, {
+    params: {},
+  });
+  return data.comments;
+};

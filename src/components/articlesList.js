@@ -1,7 +1,7 @@
 import React from 'react';
 import { getAllArticles } from './api';
 import Loading from './loading';
-import Card from './articleCard';
+import ArticleCard from './articleCard';
 
 class Articles extends React.Component {
   state = {
@@ -148,7 +148,7 @@ class Articles extends React.Component {
 
           <ul className='articlesList'>
             {this.state.articles.map((article) => {
-              return <Card key={article._id} data={article} />;
+              return <ArticleCard key={article._id} data={article} />;
             })}
           </ul>
         </div>

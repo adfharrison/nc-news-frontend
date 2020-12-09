@@ -1,7 +1,11 @@
 import React from 'react';
-
 const SingleArticleRender = (props) => {
+  // componentDidMount() {
+  //   this.setState({ showComments: this.props.toggleComments });
+  // }
+
   const article = props.article;
+
   return (
     <div className='singleArticleContainer'>
       <li className='singleArticle'>
@@ -13,6 +17,7 @@ const SingleArticleRender = (props) => {
         <p className='singleArticleComments'>
           Comments: {article.comment_count}
         </p>
+
         <button className='showCommentsButton' onClick={props.showComments}>
           Show comments
         </button>

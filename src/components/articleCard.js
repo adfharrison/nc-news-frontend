@@ -1,6 +1,6 @@
 import { Link } from '@reach/router';
 
-const Card = (props) => {
+const ArticleCard = (props) => {
   return (
     <li className='articleCard'>
       <h4 className='cardTitle'>Title: {props.data.title}</h4>
@@ -17,4 +17,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default ArticleCard;

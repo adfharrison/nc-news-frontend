@@ -19,3 +19,33 @@
   font-size: 1.2rem;
   margin: 10px;
 }
+
+.singleArticle {
+  width: 80%;
+  background-color: orange;
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 1.2rem;
+  z-index: 10;
+  border: solid black 2px;
+  border-radius: 10px;
+  padding: 5px;
+}
+.commentsList {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0px;
+}
+
+.commentCard {
+  width: 80%;
+  background-color: palegoldenrod;
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 1rem;
+  padding: 5px;
+  z-index: 10;
+  border: solid black 2px;
+  border-radius: 10px;
+}

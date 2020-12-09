@@ -2,6 +2,7 @@ import React from 'react';
 import { getArticleById, getAllArticles } from './api';
 import SingleArticleRender from './singleArticleRender';
 import Loading from './loading';
+import CommentsList from './commentsList';
 
 class SingleArticle extends React.Component {
   state = {
@@ -19,6 +20,10 @@ class SingleArticle extends React.Component {
   showComments = (event) => {
     this.setState({ showComments: true });
   };
+
+  hideComments = (event) => {
+    this.setState({ showComments: false });
+  };
   render() {
     console.log(this.state, 'STATE IN SINGLE ARTICLE');
     const article = this.state.article;
@@ -35,10 +40,14 @@ class SingleArticle extends React.Component {
       return (
         <>
           <SingleArticleRender
+            toggleComments={this.state.showComments}
             showComments={this.showComments}
+            hideComments={this.hideComments}
             article={article}
           />
-          <div className='commentsContainer'>comments</div>
+          <div className='commentsContainer'>
+            <CommentsList article_id={article.article_id} />
+          </div>
         </>
       );
     }
