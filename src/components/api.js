@@ -23,8 +23,8 @@ export const sendNewUser = async (addUser) => {
   return data;
 };
 
-export const getAllArticles = async () => {
-  const { data } = await newsApi.get('/articles');
+export const getAllArticles = async (params) => {
+  const { data } = await newsApi.get('/articles', { params: params });
   return data.articles;
 };
 

@@ -23,3 +23,27 @@
   font-size: 1.2rem;
   margin: 10px;
 }
+
+.filtersForm {
+  background-color: coral;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.articleFilters {
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.filterLabel,
+.filterSelect {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+.searchButton {
+  height: 2rem;
+  font-size: 1.5rem;
+  margin: 10px auto;
+}

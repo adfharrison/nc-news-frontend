@@ -1,6 +1,13 @@
 .app {
   background-color: cornsilk;
 }
+.loading {
+  text-align: center;
+  padding-top: 150px;
+  background-color: green;
+  font-weight: 500;
+  font-size: 2rem;
+}
 
 /* Header, title and nav */
 .header {
