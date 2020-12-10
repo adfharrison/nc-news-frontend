@@ -1,4 +1,5 @@
 import React from 'react';
+import UserAvatar from './userAvatar';
 const SingleArticleRender = (props) => {
   // componentDidMount() {
   //   this.setState({ showComments: this.props.toggleComments });
@@ -10,7 +11,10 @@ const SingleArticleRender = (props) => {
     <div className='singleArticleContainer'>
       <li className='singleArticle'>
         <h4 className='singleArticleTitle'>{article.title}</h4>
-        <h4 className='singleArticleAuthor'>Author: {article.author}</h4>
+        <div className='singleArticleAuthor'>
+          <h4 className='singleArticleAuthorName'>Author: {article.author}</h4>
+          <UserAvatar author={article.author} />
+        </div>
 
         <p className='singleArticleBody'> {article.body}...</p>
         <div className='articleVotes'>

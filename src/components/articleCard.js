@@ -1,5 +1,6 @@
 import { Link } from '@reach/router';
 import React from 'react';
+import UserAvatar from './userAvatar';
 
 class ArticleCard extends React.Component {
   state = {
@@ -26,7 +27,12 @@ class ArticleCard extends React.Component {
     return (
       <li className='articleCard'>
         <h4 className='cardTitle'>Title: {this.props.data.title}</h4>
-        <h4 className='cardauthor'>Author: {this.props.data.author}</h4>
+        <div className='articleAuthor'>
+          <h4 className='articleAuthorName'>
+            Author: {this.props.data.author}
+          </h4>
+          <UserAvatar author={this.props.data.author} />
+        </div>
 
         <p className='cardBody'> {this.props.data.body.slice(0, 120)}...</p>
         <p className='cardVotes'>Votes: {this.props.data.votes}</p>

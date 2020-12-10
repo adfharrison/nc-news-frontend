@@ -1,5 +1,6 @@
 import React from 'react';
 import { changeCommentVotes } from './api';
+import UserAvatar from './userAvatar';
 
 class CommentCard extends React.Component {
   state = {
@@ -62,7 +63,10 @@ class CommentCard extends React.Component {
   render() {
     return (
       <li className='commentCard'>
-        <h4 className='cardauthor'>Author: {this.props.data.author}</h4>
+        <div className='cardauthor'>
+          <h4 className='cardAuthorName'>Author: {this.props.data.author}</h4>
+          <UserAvatar author={this.props.data.author} />
+        </div>
         <p className='cardBody'> {this.props.data.body}...</p>
         <div className='commentVotes'>
           {' '}

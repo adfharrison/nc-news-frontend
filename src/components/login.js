@@ -5,6 +5,7 @@ import { Link } from '@reach/router';
 
 import { getUsers, sendNewUser } from './api';
 import Loading from './loading';
+import LoginRender from './loginRender';
 
 class Login extends React.Component {
   state = {
@@ -30,21 +31,21 @@ class Login extends React.Component {
     }
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
-  }
+  };
 
-  handleUserSubmit(event) {
+  handleUserSubmit = (event) => {
     event.preventDefault();
     const validUser = this.state.usernames.includes(this.state.username);
     if (validUser) {
       this.props.verifyUser(true, true, this.state.username);
     }
-  }
+  };
 
-  async handleNewUserSubmit(event) {
+  handleNewUserSubmit = async (event) => {
     event.preventDefault();
     try {
       const newUser = {
@@ -63,12 +64,11 @@ class Login extends React.Component {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  handleShowSignup(event) {
-    event.preventDefault();
+  handleShowSignup = () => {
     this.setState({ showSignup: true });
-  }
+  };
 
   render() {
     if (this.state.isLoading) {
@@ -77,63 +77,24 @@ class Login extends React.Component {
       return (
         <div className='loginContainer'>
           <h1 className='loginTitle'>Login</h1>
-          <div className='existingUser'>
-            <form
-              className='loginEntry'
-              onSubmit={(event) => this.handleUserSubmit(event)}
-            >
-              <label htmlFor='username'>
-                Enter Username
-                <input
-                  type='text'
-                  id='username'
-                  name='username'
-                  value={this.state.username}
-                  onChange={(event) => this.handleChange(event)}
-                ></input>
-              </label>
-
-              <button className='loginButton' type='submit'>
-                {' '}
-                Login{' '}
-              </button>
-            </form>
-          </div>
-          <div className='showSignup'>
-            <button
-              className='showSignupButton'
-              onClick={(event) => this.handleShowSignup(event)}
-            >
-              New Users
-            </button>
-          </div>
+          <LoginRender
+            handleUserSubmit={this.handleUserSubmit}
+            handleChange={this.handleChange}
+            handleShowSignup={this.handleShowSignup}
+            username={this.state.username}
+          />
         </div>
       );
     } else {
       return (
         <div className='loginContainer'>
           <h1 className='loginTitle'>Login</h1>
-          <div className='existingUser'>
-            <form
-              className='loginEntry'
-              onSubmit={(event) => this.handleUserSubmit(event)}
-            >
-              <label htmlFor='username'>
-                Enter Username
-                <input
-                  type='text'
-                  id='username'
-                  name='username'
-                  value={this.state.username}
-                  onChange={(event) => this.handleChange(event)}
-                ></input>
-              </label>
-              <button className='loginButton' type='submit'>
-                {' '}
-                Login{' '}
-              </button>
-            </form>
-          </div>
+          <LoginRender
+            handleUserSubmit={this.handleUserSubmit}
+            handleChange={this.handleChange}
+            handleShowSignup={this.handleShowSignup}
+            username={this.state.username}
+          />
           <div className='signup'>
             <h1 className='signupTitle'>Signup</h1>
             <div className='newUser'>

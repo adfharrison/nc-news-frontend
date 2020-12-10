@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAllArticles, getAllTopics, removeArticle } from './api';
+import { getAllArticles, getAllTopics, removeArticle, getUsers } from './api';
 import Loading from './loading';
 import ArticleCard from './articleCard';
 import ArticlesFilters from './articlesFilters';
@@ -20,12 +20,12 @@ class Articles extends React.Component {
 
   async componentDidMount() {
     const topics = await getAllTopics();
-    console.log(topics, 'TOPICS');
 
     const articles = await getAllArticles(this.state.params);
     const articleCount = articles.length;
     this.setState({
       articles,
+
       isLoading: false,
       topics,
       articleCount,
@@ -39,7 +39,7 @@ class Articles extends React.Component {
 
   deleteArticle = async (article_id) => {
     const deleteConfirmed = await removeArticle(article_id);
-    console.log(deleteConfirmed);
+
     const topics = await getAllTopics();
     const articles = await getAllArticles(this.state.params);
     const articleCount = articles.length;
@@ -74,7 +74,6 @@ class Articles extends React.Component {
   };
 
   submitFilters = (event) => {
-    console.log(this.state, 'STATE IN LIST');
     event.preventDefault();
     getAllArticles(this.state.params).then((articles) => {
       this.setState({

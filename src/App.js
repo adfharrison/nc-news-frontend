@@ -5,7 +5,7 @@ import './css/comments.css';
 import './css/addArticle.css';
 import './css/singleArticle.css';
 import React from 'react';
-import { Router } from '@reach/router';
+import { Router, navigate } from '@reach/router';
 import Axios from 'axios';
 import { Link, Redirect } from '@reach/router';
 import Login from './components/login';
@@ -16,6 +16,7 @@ import Articles from './components/articlesList';
 import SingleArticle from './components/singleArticle';
 import AddArticle from './components/addArticle';
 import Home from './components/home';
+import ErrorMessage from './components/errorMessage';
 
 class App extends React.Component {
   state = {
@@ -36,6 +37,7 @@ class App extends React.Component {
     this.setState({ isLoggedIn, correctUsername, currentUsername }, () => {
       if (isLoggedIn) {
         localStorage.setItem('state', JSON.stringify(this.state));
+        navigate(`/home`);
       }
     });
   };
@@ -44,32 +46,41 @@ class App extends React.Component {
     this.setState({ isLoggedIn: false });
   };
   render() {
-    console.log(this.state, 'APP STATE');
-
-    if (!this.state.isLoggedIn) {
-      return <Login verifyUser={this.verifyUser} />;
-    } else if (this.state.isLoading) {
+    // if (!this.state.isLoggedIn) {
+    //   return <Login verifyUser={this.verifyUser} />;
+    // } else
+    if (this.state.isLoading) {
       return <Loading />;
     } else {
       return (
         <div className='app'>
-          <div className='header'>
-            <Title />
-            <Nav logout={this.logout} />
-          </div>
+          {this.state.isLoggedIn ? (
+            <>
+              <div className='header'>
+                <Title />
+                <Nav logout={this.logout} />
+              </div>
 
-          <Router>
-            <Home path='/home' />
-            <Articles path='/articles' username={this.state.currentUsername} />
-            <SingleArticle
-              path='/articles/:article_id'
-              username={this.state.currentUsername}
-            />
-            <AddArticle
-              path='/articles/add_article'
-              username={this.state.currentUsername}
-            />
-          </Router>
+              <Router>
+                <Home path='/home' />
+                <Articles
+                  path='/articles'
+                  username={this.state.currentUsername}
+                />
+                <SingleArticle
+                  path='/articles/:article_id'
+                  username={this.state.currentUsername}
+                />
+                <AddArticle
+                  path='/articles/add_article'
+                  username={this.state.currentUsername}
+                />
+                <ErrorMessage default />
+              </Router>
+            </>
+          ) : (
+            <Login verifyUser={this.verifyUser} />
+          )}
         </div>
       );
     }

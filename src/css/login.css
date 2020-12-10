@@ -13,8 +13,9 @@
 .existingUser {
   display: flex;
   flex-direction: column;
-
-  border: solid green 2px;
+  padding: 10px;
+  border: solid black 2px;
+  border-radius: 7px;
   font-size: 1.5rem;
 }
 .showSignup {

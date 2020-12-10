@@ -13,12 +13,28 @@ class SingleArticle extends React.Component {
     addComment: false,
     username: '',
     commentAdded: false,
+    hasError: false,
+    errorMessage: '',
   };
 
   async componentDidMount() {
-    const article = await getArticleById(this.props.article_id);
+    try {
+      const article = await getArticleById(this.props.article_id);
 
-    this.setState({ article, isLoading: false, username: this.props.username });
+      this.setState({
+        article,
+        isLoading: false,
+        username: this.props.username,
+      });
+    } catch (error) {
+      const {
+        response: { status, statusText },
+      } = error;
+      this.setState({
+        hasError: true,
+        errorMessage: `${status}: ${statusText}`,
+      });
+    }
   }
 
   toggleComments = (event) => {
@@ -65,7 +81,7 @@ class SingleArticle extends React.Component {
     });
   };
   render() {
-    console.log(this.state, 'STATE IN SINGLE ARTICLE');
+    console.log(`${this.state.hasError}, ${this.state.errorMessage}`);
     const article = this.state.article;
     if (this.state.isLoading) {
       return <Loading />;
