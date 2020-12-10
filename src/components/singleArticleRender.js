@@ -13,13 +13,23 @@ const SingleArticleRender = (props) => {
         <h4 className='singleArticleAuthor'>Author: {article.author}</h4>
 
         <p className='singleArticleBody'> {article.body}...</p>
-        <p className='singleArticleVotes'>Votes: {article.votes}</p>
+        <div className='articleVotes'>
+          {' '}
+          <button className='downVote' name='decrease' onClick={props.downVote}>
+            -
+          </button>
+          <p className='singleArticleVotes'>Votes: {article.votes}</p>{' '}
+          <button className='upVote' name='increase' onClick={props.upVote}>
+            +
+          </button>
+        </div>
+
         <p className='singleArticleComments'>
           Comments: {article.comment_count}
         </p>
 
-        <button className='showCommentsButton' onClick={props.showComments}>
-          Show comments
+        <button className='showCommentsButton' onClick={props.toggleComments}>
+          {props.showComments ? 'Hide Comments' : 'Show Comments'}
         </button>
       </li>
     </div>

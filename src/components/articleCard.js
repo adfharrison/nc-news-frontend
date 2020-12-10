@@ -1,20 +1,53 @@
 import { Link } from '@reach/router';
+import React from 'react';
 
-const ArticleCard = (props) => {
-  return (
-    <li className='articleCard'>
-      <h4 className='cardTitle'>Title: {props.data.title}</h4>
-      <h4 className='cardauthor'>Author: {props.data.author}</h4>
+class ArticleCard extends React.Component {
+  state = {
+    author: '',
+    showWarning: false,
+  };
 
-      <p className='cardBody'> {props.data.body.slice(0, 120)}...</p>
-      <p className='cardVotes'>Votes: {props.data.votes}</p>
-      <p className='cardComments'>Comments: {props.data.comment_count}</p>
+  componentDidMount() {
+    this.setState({ username: this.props.data.author });
+  }
 
-      <Link to={`/articles/${props.data.article_id}`}>
-        <button className='cardButton'>Click to see article </button>
-      </Link>
-    </li>
-  );
-};
+  validateDelete = () => {
+    console.log('USERNAME INVALID');
+
+    if (this.state.username === this.props.username) {
+      console.log('USERNAME VALIDATED');
+      this.props.deleteArticle(this.props.data.article_id);
+    } else {
+      this.setState({ showWarning: true });
+    }
+  };
+
+  render() {
+    return (
+      <li className='articleCard'>
+        <h4 className='cardTitle'>Title: {this.props.data.title}</h4>
+        <h4 className='cardauthor'>Author: {this.props.data.author}</h4>
+
+        <p className='cardBody'> {this.props.data.body.slice(0, 120)}...</p>
+        <p className='cardVotes'>Votes: {this.props.data.votes}</p>
+        <p className='cardComments'>
+          Comments: {this.props.data.comment_count}
+        </p>
+
+        <Link
+          to={`/articles/${this.props.data.article_id}`}
+          username={this.props.username}
+          rerenderList={this.props.rerenderList}
+        >
+          <button className='cardButton'>Click to see article </button>
+        </Link>
+        <button className='deleteArticleButton' onClick={this.validateDelete}>
+          Delete Article
+        </button>
+        {this.state.showWarning && <h5>Only the author can do this</h5>}
+      </li>
+    );
+  }
+}
 
 export default ArticleCard;

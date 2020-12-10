@@ -1,6 +1,8 @@
 import './css/App.css';
 import './css/login.css';
 import './css/list.css';
+import './css/comments.css';
+import './css/addArticle.css';
 import './css/singleArticle.css';
 import React from 'react';
 import { Router } from '@reach/router';
@@ -21,6 +23,7 @@ class App extends React.Component {
     isLoggedIn: false,
     correctUsername: false,
     currentUsername: '',
+    rerender: false,
   };
 
   componentDidMount() {
@@ -57,9 +60,15 @@ class App extends React.Component {
 
           <Router>
             <Home path='/home' />
-            <Articles path='/articles' />
-            <SingleArticle path='/articles/:article_id' />
-            <AddArticle path='/articles/add_article' />
+            <Articles path='/articles' username={this.state.currentUsername} />
+            <SingleArticle
+              path='/articles/:article_id'
+              username={this.state.currentUsername}
+            />
+            <AddArticle
+              path='/articles/add_article'
+              username={this.state.currentUsername}
+            />
           </Router>
         </div>
       );

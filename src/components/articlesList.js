@@ -1,7 +1,8 @@
 import React from 'react';
-import { getAllArticles } from './api';
+import { getAllArticles, getAllTopics, removeArticle } from './api';
 import Loading from './loading';
 import ArticleCard from './articleCard';
+import ArticlesFilters from './articlesFilters';
 
 class Articles extends React.Component {
   state = {
@@ -9,59 +10,62 @@ class Articles extends React.Component {
     isLoading: true,
     articleCount: undefined,
     error: undefined,
-    query: {},
+
     topics: [],
     topicToCheck: 'all',
+    username: '',
+    params: { limit: 100, order: 'asc', sort_by: 'created_at' },
+    rerender: false,
   };
 
   async componentDidMount() {
-    const articlesArr = await getAllArticles();
-    const topics = this.getUniqueTopics(articlesArr);
+    const topics = await getAllTopics();
+    console.log(topics, 'TOPICS');
 
-    const articles = this.topicCheck(articlesArr, this.state.topicToCheck);
+    const articles = await getAllArticles(this.state.params);
     const articleCount = articles.length;
-    this.setState({ articles, isLoading: false, topics, articleCount });
+    this.setState({
+      articles,
+      isLoading: false,
+      topics,
+      articleCount,
+      username: this.props.username,
+    });
   }
   catch(error) {
     console.log(error);
     this.setState({ error });
   }
-  topicCheck = (articles, topic) => {
-    let result = [];
-    if (topic === 'all') {
-      result = articles;
-    } else {
-      result = articles.filter((article) => {
-        if (topic === article.topic) {
-          return article;
-        }
-      });
-    }
-    return result;
+
+  deleteArticle = async (article_id) => {
+    const deleteConfirmed = await removeArticle(article_id);
+    console.log(deleteConfirmed);
+    const topics = await getAllTopics();
+    const articles = await getAllArticles(this.state.params);
+    const articleCount = articles.length;
+    if (deleteConfirmed === 204)
+      this.setState({ articles, isLoading: false, topics, articleCount });
   };
 
-  getUniqueTopics = (articles) => {
-    let topics = articles.map((article) => {
-      return article.topic;
-    });
-    let uniqueTopics = topics.sort().filter((topic, index, topics) => {
-      if (topic !== topics[index - 1]) {
-        return topic;
+  topicHandler = async (event) => {
+    const topic = event.target.value;
+    const articlesArray = await getAllArticles(this.state.params);
+    const articles = articlesArray.filter((article) => {
+      if (topic === 'all') {
+        return article;
+      } else if (article.topic === topic) {
+        return article;
       }
     });
 
-    return uniqueTopics;
-  };
-
-  topicHandler = (event) => {
-    this.setState({ topicToCheck: event.target.value });
+    this.setState({ articles: articles });
   };
 
   changeHandler = (event) => {
     this.setState((currentState) => {
       const newState = {
-        query: {
-          ...currentState.query,
+        params: {
+          ...currentState.params,
           [event.target.name]: event.target.value,
         },
       };
@@ -70,8 +74,9 @@ class Articles extends React.Component {
   };
 
   submitFilters = (event) => {
+    console.log(this.state, 'STATE IN LIST');
     event.preventDefault();
-    getAllArticles(this.state.query).then((articles) => {
+    getAllArticles(this.state.params).then((articles) => {
       this.setState({
         articles,
         isLoading: false,
@@ -80,75 +85,36 @@ class Articles extends React.Component {
     });
   };
 
+  rerenderList = () => {
+    this.setState({ rerender: true });
+  };
+
   render() {
-    console.log(this.state, 'STATE IN LIST');
     if (this.state.isLoading) {
       return <Loading />;
     } else {
       return (
         <div className='articles'>
-          <h3>Articles</h3>
-          <div className='filters'>
-            <form
-              className='filtersForm'
-              onSubmit={(event) => {
-                this.submitFilters(event);
-              }}
-            >
-              <div className='articleFilters'>
-                <label htmlFor='showArticles' className='filterLabel'>
-                  Show Topics
-                  <select
-                    className='filterSelect'
-                    name='topicToChange'
-                    id='topicToChange'
-                    onChange={this.topicHandler}
-                  >
-                    <option value='all'>All</option>
-                    {this.state.topics.map((topic) => {
-                      return (
-                        <option key={topic} value={topic}>
-                          {topic}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </label>
+          <h3 className='articlesTitle'>Articles</h3>
 
-                <label htmlFor='sort_by' className='filterLabel'>
-                  Sort by
-                  <select
-                    className='filterSelect'
-                    name='sort_by'
-                    id='sort_by'
-                    onChange={this.changeHandler}
-                  >
-                    <option value='author'>Author</option>
-                    <option value='title'> Title</option>
-                    <option value='date'> Date</option>
-                    <option value='votes'> Votes</option>
-                  </select>
-                </label>
-                <label htmlFor='order' className='filterLabel'>
-                  Order
-                  <select
-                    name='order'
-                    id='order'
-                    className='filterSelect'
-                    onChange={this.changeHandler}
-                  >
-                    <option value='asc'>Ascending</option>
-                    <option value='desc'>Descending</option>
-                  </select>
-                </label>
-              </div>
-              <button className='searchButton'>Search</button>
-            </form>
-          </div>
+          <ArticlesFilters
+            topics={this.state.topics}
+            topicHandler={this.topicHandler}
+            changeHandler={this.changeHandler}
+            submitFilters={this.submitFilters}
+          />
 
           <ul className='articlesList'>
             {this.state.articles.map((article) => {
-              return <ArticleCard key={article._id} data={article} />;
+              return (
+                <ArticleCard
+                  deleteArticle={this.deleteArticle}
+                  key={article._id}
+                  data={article}
+                  username={this.state.username}
+                  rerenderList={this.rerenderList}
+                />
+              );
             })}
           </ul>
         </div>

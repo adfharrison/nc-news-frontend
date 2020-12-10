@@ -1,0 +1,28 @@
+.addArticleContainer {
+  padding-top: 100px;
+}
+.newArticleTitle {
+  text-align: center;
+}
+
+.newArticleForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 80%;
+  background-color: orange;
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 10;
+  border: solid black 2px;
+  border-radius: 10px;
+}
+
+.articleSubmitButton {
+  width: 30%;
+  margin: 0 auto;
+}
+.formElement {
+  margin: 5px;
+}
