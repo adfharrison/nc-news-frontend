@@ -1,5 +1,5 @@
 import React from 'react';
-import { postArticle, postTopic } from './api';
+import { postArticle, postTopic, getAllTopics } from './api';
 class AddArticle extends React.Component {
   state = {
     author: '',
@@ -7,10 +7,13 @@ class AddArticle extends React.Component {
     title: '',
     body: '',
     newArticle: null,
+    topics: [],
+    existingTopic: 'new',
   };
 
-  componentDidMount() {
-    this.setState({ author: this.props.username });
+  async componentDidMount() {
+    const topics = await getAllTopics();
+    this.setState({ author: this.props.username, topics });
   }
 
   handleChange(event) {
@@ -18,9 +21,14 @@ class AddArticle extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
+  handleExistingTopic(event) {
+    const existingTopic = event.target.value;
+    this.setState({ existingTopic });
+  }
 
   async handleSubmit(event) {
     event.preventDefault();
+
     const topicRequest = {
       newTopic: {
         description: this.state.topic,
@@ -28,21 +36,29 @@ class AddArticle extends React.Component {
       },
     };
 
-    const postedTopic = await postTopic(topicRequest);
+    postTopic(topicRequest);
+    let requestTopic = '';
+    if (this.state.existingTopic === 'new') {
+      requestTopic = this.state.topic;
+    } else {
+      requestTopic = this.state.existingTopic;
+    }
 
     const articleRequest = {
       newArticle: {
         author: this.state.author,
         body: this.state.body,
         title: this.state.title,
-        topic: this.state.topic,
+        topic: requestTopic,
       },
     };
 
     const postedArticle = await postArticle(articleRequest);
     this.setState({ newArticle: true });
   }
+
   render() {
+    console.log(this.state);
     return (
       <div className='addArticleContainer'>
         <h2 className='newArticleTitle'>Add Article</h2>
@@ -60,12 +76,33 @@ class AddArticle extends React.Component {
               onChange={(event) => this.handleChange(event)}
             ></input>
           </label>
+          {/* ADD EXISTING TOPICS HERE */}
+          <label htmlFor='existingTopics' className='formElement'>
+            select existing topic
+            <select
+              className='filterSelect'
+              name='existingTopics'
+              id='existingTopics'
+              onChange={(event) => this.handleExistingTopic(event)}
+            >
+              <option value='new'>New</option>
+              {this.state.topics.map((topic) => {
+                return (
+                  <option key={topic} value={topic}>
+                    {topic}
+                  </option>
+                );
+              })}
+            </select>
+          </label>
+          {/* ADD EXISTING TOPICS HERE */}
           <label htmlFor='topic' className='formElement'>
-            Topic:
+            If you chose New:
             <input
               type='text'
               id='topic'
               name='topic'
+              placeholder='please enter new topic'
               value={this.state.topic}
               onChange={(event) => this.handleChange(event)}
             ></input>

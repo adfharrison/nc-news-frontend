@@ -30,10 +30,7 @@ class CommentCard extends React.Component {
     let request = {
       inc_votes: 1,
     };
-    const voteChangeSuccess = await changeCommentVotes(
-      this.props.data.comment_id,
-      request
-    );
+    await changeCommentVotes(this.props.data.comment_id, request);
 
     this.setState((currentState) => {
       let newState = currentState;
@@ -47,10 +44,7 @@ class CommentCard extends React.Component {
     let request = {
       inc_votes: -1,
     };
-    const voteChangeSuccess = await changeCommentVotes(
-      this.props.data.comment_id,
-      request
-    );
+    await changeCommentVotes(this.props.data.comment_id, request);
 
     this.setState((currentState) => {
       let newState = currentState;

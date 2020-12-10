@@ -51,6 +51,7 @@ export const postComment = async (article_id, request) => {
 };
 
 export const postArticle = async (request) => {
+  console.log(request);
   const { data } = await newsApi.post('/articles', request);
 
   return data.newArticle;

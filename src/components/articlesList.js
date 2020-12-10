@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAllArticles, getAllTopics, removeArticle, getUsers } from './api';
+import { getAllArticles, getAllTopics, removeArticle } from './api';
 import Loading from './loading';
 import ArticleCard from './articleCard';
 import ArticlesFilters from './articlesFilters';
@@ -49,15 +49,12 @@ class Articles extends React.Component {
 
   topicHandler = async (event) => {
     const topic = event.target.value;
+    console.log(event.target.value);
     const articlesArray = await getAllArticles(this.state.params);
     const articles = articlesArray.filter((article) => {
-      if (topic === 'all') {
-        return article;
-      } else if (article.topic === topic) {
-        return article;
-      }
+      return topic === 'all' ? article : article.topic === topic;
     });
-
+    console.log(articles);
     this.setState({ articles: articles });
   };
 

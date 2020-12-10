@@ -6,8 +6,7 @@ import './css/addArticle.css';
 import './css/singleArticle.css';
 import React from 'react';
 import { Router, navigate } from '@reach/router';
-import Axios from 'axios';
-import { Link, Redirect } from '@reach/router';
+
 import Login from './components/login';
 import Loading from './components/loading';
 import Title from './components/header';
@@ -75,7 +74,10 @@ class App extends React.Component {
                   path='/articles/add_article'
                   username={this.state.currentUsername}
                 />
-                <ErrorMessage default />
+                <ErrorMessage
+                  default
+                  errorMessage={'Error 404: Page Does Not Exist'}
+                />
               </Router>
             </>
           ) : (

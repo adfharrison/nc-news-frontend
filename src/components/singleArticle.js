@@ -1,9 +1,9 @@
 import React from 'react';
-import { getArticleById, getAllArticles, changeArticleVotes } from './api';
+import { getArticleById, changeArticleVotes } from './api';
 import SingleArticleRender from './singleArticleRender';
 import Loading from './loading';
 import CommentsList from './commentsList';
-import AddComment from './addComment';
+import ErrorMessage from './errorMessage';
 
 class SingleArticle extends React.Component {
   state = {
@@ -31,8 +31,9 @@ class SingleArticle extends React.Component {
         response: { status, statusText },
       } = error;
       this.setState({
+        isLoading: false,
         hasError: true,
-        errorMessage: `${status}: ${statusText}`,
+        errorMessage: `Error ${status}: ${statusText}, Article Does Not Exist`,
       });
     }
   }
@@ -85,7 +86,10 @@ class SingleArticle extends React.Component {
     const article = this.state.article;
     if (this.state.isLoading) {
       return <Loading />;
-    } else {
+    } else if (this.state.hasError) {
+      return <ErrorMessage errorMessage={this.state.errorMessage} />;
+    }
+    {
       return (
         <>
           <SingleArticleRender

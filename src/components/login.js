@@ -1,8 +1,5 @@
 import React from 'react';
 
-import Axios from 'axios';
-import { Link } from '@reach/router';
-
 import { getUsers, sendNewUser } from './api';
 import Loading from './loading';
 import LoginRender from './loginRender';

@@ -3,7 +3,7 @@ import React from 'react';
 const ErrorMessage = (props) => {
   return (
     <div className='errorMessage'>
-      <p> Page Not Found</p>
+      <p> {props.errorMessage}</p>
     </div>
   );
 };
