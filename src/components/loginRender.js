@@ -8,21 +8,21 @@ const LoginRender = (props) => {
           className='loginEntry'
           onSubmit={(event) => props.handleUserSubmit(event)}
         >
-          <label htmlFor='username'>
-            Enter Username
-            <input
-              type='text'
-              id='username'
-              name='username'
-              value={props.username}
-              onChange={(event) => props.handleChange(event)}
-            ></input>
-          </label>
-
-          <button className='loginButton' type='submit'>
-            {' '}
-            Login{' '}
-          </button>
+          <div className='userNameTitle'>
+            <label htmlFor='username'>
+              Enter Username
+              <input
+                type='text'
+                id='username'
+                name='username'
+                value={props.username}
+                onChange={(event) => props.handleChange(event)}
+              ></input>
+            </label>
+          </div>
+          <div className='loginButton'>
+            <button type='loginSubmit'> Login </button>
+          </div>
         </form>
       </div>
       <div className='showSignup'>

@@ -43,6 +43,8 @@ class App extends React.Component {
 
   logout = () => {
     this.setState({ isLoggedIn: false });
+    localStorage.setItem('state', JSON.stringify(this.state));
+    navigate('/');
   };
   render() {
     // if (!this.state.isLoggedIn) {
@@ -74,6 +76,7 @@ class App extends React.Component {
                   path='/articles/add_article'
                   username={this.state.currentUsername}
                 />
+                <Login verifyUser={this.verifyUser} path='/' />
                 <ErrorMessage
                   default
                   errorMessage={'Error 404: Page Does Not Exist'}
@@ -81,7 +84,7 @@ class App extends React.Component {
               </Router>
             </>
           ) : (
-            <Login verifyUser={this.verifyUser} />
+            <Login verifyUser={this.verifyUser} path='/' />
           )}
         </div>
       );

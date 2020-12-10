@@ -24,7 +24,7 @@ class AddComment extends React.Component {
       },
     };
     const newComment = await postComment(this.state.article_id, request);
-    console.log(newComment);
+
     this.props.commentAdded(newComment);
   }
 
@@ -42,8 +42,9 @@ class AddComment extends React.Component {
           onSubmit={(event) => this.handleSubmit(event)}
         >
           <label htmlFor='body'>
-            Comment:
             <textarea
+              className='commentTextArea'
+              rows='6'
               id='body'
               name='body'
               value={this.state.body}
@@ -51,7 +52,7 @@ class AddComment extends React.Component {
               onChange={(event) => this.handleChange(event)}
             ></textarea>
           </label>
-          <button className='submitButton' type='submit'>
+          <button className='commentSubmitButton' type='submit'>
             Send
           </button>
         </form>

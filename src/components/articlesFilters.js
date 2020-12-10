@@ -3,24 +3,26 @@ import React from 'react';
 const ArticlesFilters = (props) => {
   return (
     <div className='filters'>
-      <label htmlFor='showArticles' className='topicFilter'>
-        Show Topics
-        <select
-          className='filterSelect'
-          name='topicToChange'
-          id='topicToChange'
-          onChange={props.topicHandler}
-        >
-          <option value='all'>All</option>
-          {props.topics.map((topic) => {
-            return (
-              <option key={topic} value={topic}>
-                {topic}
-              </option>
-            );
-          })}
-        </select>
-      </label>
+      <div className='topicsFilter'>
+        <label htmlFor='showArticles' className='topicFilter'>
+          Show Topics
+          <select
+            className='filterSelect'
+            name='topicToChange'
+            id='topicToChange'
+            onChange={props.topicHandler}
+          >
+            <option value='all'>All</option>
+            {props.topics.map((topic) => {
+              return (
+                <option key={topic} value={topic}>
+                  {topic}
+                </option>
+              );
+            })}
+          </select>
+        </label>
+      </div>
       <form
         className='filtersForm'
         onSubmit={(event) => {
@@ -56,7 +58,9 @@ const ArticlesFilters = (props) => {
             </select>
           </label>
         </div>
-        <button className='searchButton'>Search</button>
+        <div className='articlesSearchButton'>
+          <button className='searchButton'>Search</button>
+        </div>
       </form>
     </div>
   );

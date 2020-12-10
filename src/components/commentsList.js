@@ -47,7 +47,7 @@ class CommentsList extends React.Component {
 
   deleteComment = async (comment_id) => {
     const deleteConfirmed = await removeComment(comment_id);
-    console.log(deleteConfirmed);
+
     const comments = await getCommentsById(this.props.article_id);
 
     if (deleteConfirmed === 204) {
@@ -69,7 +69,6 @@ class CommentsList extends React.Component {
   };
 
   submitFilters = async (event) => {
-    console.log(this.state, 'STATE IN COMMENTS');
     event.preventDefault();
     const comments = await getCommentsById(
       this.props.article_id,
@@ -87,9 +86,14 @@ class CommentsList extends React.Component {
     } else {
       return (
         <>
-          <button className='addCommentButton' onClick={this.toggleAddComment}>
-            {this.state.addComment ? 'Hide Add Comment' : 'Add Comment'}
-          </button>
+          <div className='addComment'>
+            <button
+              className='addCommentButton'
+              onClick={this.toggleAddComment}
+            >
+              {this.state.addComment ? 'Hide Add Comment' : 'Add Comment'}
+            </button>{' '}
+          </div>
           {this.state.addComment && (
             <AddComment
               article_id={this.props.article_id}
@@ -97,6 +101,7 @@ class CommentsList extends React.Component {
               commentAdded={this.commentAdded}
             />
           )}
+
           <CommentsFilters
             changeHandler={this.changeHandler}
             submitFilters={this.submitFilters}

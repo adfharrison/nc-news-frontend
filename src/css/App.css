@@ -1,5 +1,5 @@
 .app {
-  background-color: cornsilk;
+  background-color: rgb(200, 204, 207);
 }
 .loading {
   text-align: center;
@@ -11,16 +11,18 @@
 
 /* Header, title and nav */
 .header {
-  background-color: darkkhaki;
+  background-color: rgb(240, 205, 8);
   position: fixed;
-  width: 95%;
+  width: 97%;
   z-index: 20;
   margin-bottom: 100px;
+  border: solid black 2px;
+  border-radius: 5px;
 }
 .title {
   width: 80%;
   margin: auto;
-  outline: solid blue 2px;
+
   text-align: center;
 }
 .nav {
@@ -28,8 +30,7 @@
   align-items: center;
   justify-content: space-around;
 
-  outline: solid green 2px;
-  width: 90%;
+  width: 97%;
   margin: 10px auto;
   text-align: center;
   height: 3rem;

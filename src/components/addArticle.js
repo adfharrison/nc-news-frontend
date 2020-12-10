@@ -58,7 +58,6 @@ class AddArticle extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className='addArticleContainer'>
         <h2 className='newArticleTitle'>Add Article</h2>
@@ -66,57 +65,66 @@ class AddArticle extends React.Component {
           className='newArticleForm'
           onSubmit={(event) => this.handleSubmit(event)}
         >
-          <label htmlFor='title' className='formElement'>
-            Title:
-            <input
-              type='text'
-              id='title'
-              name='title'
-              value={this.state.title}
-              onChange={(event) => this.handleChange(event)}
-            ></input>
-          </label>
+          <div className='submitArticleTitle'>
+            <label htmlFor='title' className='formElement'>
+              Title:
+              <input
+                type='text'
+                id='title'
+                name='title'
+                value={this.state.title}
+                onChange={(event) => this.handleChange(event)}
+              ></input>
+            </label>
+          </div>
           {/* ADD EXISTING TOPICS HERE */}
-          <label htmlFor='existingTopics' className='formElement'>
-            select existing topic
-            <select
-              className='filterSelect'
-              name='existingTopics'
-              id='existingTopics'
-              onChange={(event) => this.handleExistingTopic(event)}
-            >
-              <option value='new'>New</option>
-              {this.state.topics.map((topic) => {
-                return (
-                  <option key={topic} value={topic}>
-                    {topic}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
+          <div className='submitArticleTopic'>
+            <label htmlFor='existingTopics' className='formElement'>
+              select existing topic
+              <select
+                className='filterSelect'
+                name='existingTopics'
+                id='existingTopics'
+                onChange={(event) => this.handleExistingTopic(event)}
+              >
+                <option value='new'>New</option>
+                {this.state.topics.map((topic) => {
+                  return (
+                    <option key={topic} value={topic}>
+                      {topic}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+          </div>
           {/* ADD EXISTING TOPICS HERE */}
-          <label htmlFor='topic' className='formElement'>
-            If you chose New:
-            <input
-              type='text'
-              id='topic'
-              name='topic'
-              placeholder='please enter new topic'
-              value={this.state.topic}
-              onChange={(event) => this.handleChange(event)}
-            ></input>
-          </label>
-          <label htmlFor='body' className='formElement'>
-            Article:
-            <textarea
-              id='body'
-              name='body'
-              value={this.state.body}
-              placeholder='your article here'
-              onChange={(event) => this.handleChange(event)}
-            ></textarea>
-          </label>
+          <div className='submitArticleNewTopic'>
+            <label htmlFor='topic' className='formElement'>
+              If you chose New:
+              <input
+                type='text'
+                id='topic'
+                name='topic'
+                placeholder='please enter new topic'
+                value={this.state.topic}
+                onChange={(event) => this.handleChange(event)}
+              ></input>
+            </label>
+          </div>
+          <div className='submitArticleBody'>
+            <label htmlFor='body' className='formElement'>
+              Article:
+              <textarea
+                rows='6'
+                id='body'
+                name='body'
+                value={this.state.body}
+                placeholder='your article here'
+                onChange={(event) => this.handleChange(event)}
+              ></textarea>
+            </label>
+          </div>
           <button className='articleSubmitButton' type='submit'>
             Send
           </button>{' '}

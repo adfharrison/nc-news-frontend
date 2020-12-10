@@ -17,10 +17,7 @@ class CommentCard extends React.Component {
   }
 
   validateDelete = () => {
-    console.log('USERNAME INVALID');
-
     if (this.state.author === this.props.username) {
-      console.log('USERNAME VALIDATED');
       this.props.deleteComment(this.props.data.comment_id);
     } else {
       this.setState({ showWarning: true });

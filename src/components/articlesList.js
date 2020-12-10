@@ -39,23 +39,33 @@ class Articles extends React.Component {
 
   deleteArticle = async (article_id) => {
     const deleteConfirmed = await removeArticle(article_id);
-
+    const topic = this.state.topicToCheck;
     const topics = await getAllTopics();
-    const articles = await getAllArticles(this.state.params);
-    const articleCount = articles.length;
-    if (deleteConfirmed === 204)
-      this.setState({ articles, isLoading: false, topics, articleCount });
-  };
-
-  topicHandler = async (event) => {
-    const topic = event.target.value;
-    console.log(event.target.value);
     const articlesArray = await getAllArticles(this.state.params);
     const articles = articlesArray.filter((article) => {
       return topic === 'all' ? article : article.topic === topic;
     });
-    console.log(articles);
-    this.setState({ articles: articles });
+    const articleCount = articles.length;
+
+    if (deleteConfirmed === 204)
+      this.setState({
+        topicToCheck: topic,
+        articles: articles,
+        isLoading: false,
+        topics,
+        articleCount,
+      });
+  };
+
+  topicHandler = async (event) => {
+    const topic = event.target.value;
+
+    const articlesArray = await getAllArticles(this.state.params);
+    const articles = articlesArray.filter((article) => {
+      return topic === 'all' ? article : article.topic === topic;
+    });
+
+    this.setState({ articles: articles, topicToCheck: topic });
   };
 
   changeHandler = (event) => {
@@ -81,9 +91,9 @@ class Articles extends React.Component {
     });
   };
 
-  rerenderList = () => {
-    this.setState({ rerender: true });
-  };
+  //rerenderList = () => {
+  //  this.setState({ rerender: true });
+  //};
 
   render() {
     if (this.state.isLoading) {
@@ -105,10 +115,10 @@ class Articles extends React.Component {
               return (
                 <ArticleCard
                   deleteArticle={this.deleteArticle}
-                  key={article._id}
+                  key={article.article_id}
                   data={article}
                   username={this.state.username}
-                  rerenderList={this.rerenderList}
+                  //rerenderList={this.rerenderList}
                 />
               );
             })}

@@ -73,7 +73,8 @@ class Login extends React.Component {
     } else if (!this.state.showSignup) {
       return (
         <div className='loginContainer'>
-          <h1 className='loginTitle'>Login</h1>
+          <h2 className='loginTitle'>Northcoders News</h2>
+          <h3 className='loginSubtitle'>Login</h3>
           <LoginRender
             handleUserSubmit={this.handleUserSubmit}
             handleChange={this.handleChange}

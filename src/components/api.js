@@ -51,7 +51,6 @@ export const postComment = async (article_id, request) => {
 };
 
 export const postArticle = async (request) => {
-  console.log(request);
   const { data } = await newsApi.post('/articles', request);
 
   return data.newArticle;
@@ -87,6 +86,7 @@ export const changeCommentVotes = async (comment_id, request) => {
 };
 
 export const postTopic = async (request) => {
+  console.log(request);
   const { status } = await newsApi.post('/topics', request);
   return status;
 };

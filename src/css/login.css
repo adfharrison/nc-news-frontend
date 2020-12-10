@@ -1,5 +1,5 @@
 .loginContainer {
-  background-color: aquamarine;
+  background-color: rgb(200, 204, 207);
   width: 90%;
   margin: 0 auto;
 }
@@ -7,8 +7,17 @@
   width: 50%;
   margin: 0 auto;
   text-align: center;
-  border: solid red 2px;
-  font-size: 3rem;
+
+  font-size: 2rem;
+}
+.loginSubtitle {
+  width: 50%;
+  margin: 20px auto;
+  text-align: center;
+  border: solid black 2px;
+  font-size: 2rem;
+  border-radius: 5px;
+  background-color: rgb(243, 193, 75);
 }
 .existingUser {
   display: flex;
@@ -17,7 +26,20 @@
   border: solid black 2px;
   border-radius: 7px;
   font-size: 1.5rem;
+  background-color: orange;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
 }
 .showSignup {
-  border: solid blue 2px;
+  border: solid;
+}
+
+.loginButton {
+  justify-content: center;
+  text-align: center;
+}
+.loginSubmit {
+  font-size: 1.2rem;
 }

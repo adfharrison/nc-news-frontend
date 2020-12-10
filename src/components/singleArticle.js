@@ -82,7 +82,6 @@ class SingleArticle extends React.Component {
     });
   };
   render() {
-    console.log(`${this.state.hasError}, ${this.state.errorMessage}`);
     const article = this.state.article;
     if (this.state.isLoading) {
       return <Loading />;
