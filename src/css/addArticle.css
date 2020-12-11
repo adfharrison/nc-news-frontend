@@ -1,5 +1,7 @@
 .addArticleContainer {
   padding-top: 100px;
+  height: 1000px;
+  background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
 }
 .newArticleTitle {
   text-align: center;
@@ -51,6 +53,7 @@
   margin: 10px;
   display: block;
   justify-content: center;
+  justify-items: center;
   align-items: center;
   align-content: center;
   font-size: 1.2rem;
@@ -62,4 +65,14 @@
   align-items: center;
   align-content: center;
   font-size: 1.2rem;
+}
+
+.filterSelect {
+  justify-content: center;
+  text-align: center;
+  justify-items: center;
+}
+.submitArticleTextarea {
+  width: 200px;
+  font-size: 1.5rem;
 }

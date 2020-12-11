@@ -16,6 +16,8 @@ class Articles extends React.Component {
     username: '',
     params: { limit: 100, order: 'asc', sort_by: 'created_at' },
     rerender: false,
+    singleAuthor: false,
+    author_id: '',
   };
 
   async componentDidMount() {
@@ -30,6 +32,8 @@ class Articles extends React.Component {
       topics,
       articleCount,
       username: this.props.username,
+      singleAuthor: this.props.singleAuthor,
+      author_id: this.props.author_id,
     });
   }
   catch(error) {

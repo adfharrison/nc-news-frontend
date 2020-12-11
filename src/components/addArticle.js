@@ -116,6 +116,7 @@ class AddArticle extends React.Component {
             <label htmlFor='body' className='formElement'>
               Article:
               <textarea
+                className='submitArticleTextarea'
                 rows='6'
                 id='body'
                 name='body'

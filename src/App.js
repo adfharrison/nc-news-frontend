@@ -17,6 +17,7 @@ import Nav from './components/nav';
 import Articles from './components/articlesList';
 import SingleArticle from './components/singleArticle';
 import AddArticle from './components/addArticle';
+
 import Home from './components/home';
 import ErrorMessage from './components/errorMessage';
 
@@ -77,6 +78,7 @@ class App extends React.Component {
                   path='/articles/:article_id'
                   username={this.state.currentUsername}
                 />
+
                 <AddArticle
                   path='/articles/add_article'
                   username={this.state.currentUsername}

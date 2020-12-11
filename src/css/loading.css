@@ -1,7 +1,7 @@
 .loading {
   text-align: center;
   padding-top: 150px;
-  background-color: green;
+  background-color: rgb(157, 224, 157);
   font-weight: 500;
   font-size: 2rem;
 }
@@ -20,7 +20,7 @@
   height: 0;
   margin: 8px;
   box-sizing: border-box;
-  border: 32px solid #fff;
+  border: 32px solid rgb(15, 233, 26);
   border-color: #fff transparent #fff transparent;
   animation: lds-hourglass 1.2s infinite;
 }

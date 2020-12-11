@@ -136,7 +136,15 @@ class Login extends React.Component {
                   ></input>
                 </label>
 
-                <button className='loginButton' type='submit'>
+                <button
+                  className='loginButton'
+                  type='submit'
+                  disabled={
+                    this.state.newUsername.length < 1 ||
+                    this.state.name.length < 1 ||
+                    this.state.avatar_url.length < 1
+                  }
+                >
                   {' '}
                   Submit + Login{' '}
                 </button>

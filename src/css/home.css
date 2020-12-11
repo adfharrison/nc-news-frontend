@@ -25,9 +25,13 @@
     transform: rotate(360deg);
   }
 }
-
+.homeContainer {
+  background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+  height: 1000px;
+}
 .homeContent {
   display: flex;
+  flex-direction: column;
   justify-items: center;
   align-content: center;
   align-items: center;
@@ -43,4 +47,62 @@
   border: solid black 2px;
   border-radius: 10px;
   padding: 5px;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 90%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  color: rgba(56, 56, 56, 1);
+  font-family: monospace;
+
+  animation: typing 3s steps(40, end) 0s, blink-caret 1.5s step-end infinite,
+    fade-in 0.5s cubic-bezier(1, 0, 1, 0);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.typewritercontainer {
+  max-width: 80%;
+  margin-top: 30px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-left: 5px;
+  background-color: papayawhip;
+  border: solid black 2px;
+  border-radius: 5px;
+  height: 2rem;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 }

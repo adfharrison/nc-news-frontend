@@ -1,5 +1,5 @@
 import React from 'react';
-import { getArticleById, changeArticleVotes } from './api';
+import { getArticleById, changeArticleVotes, getUsers } from './api';
 import SingleArticleRender from './singleArticleRender';
 import Loading from './loading';
 import CommentsList from './commentsList';
@@ -16,16 +16,19 @@ class SingleArticle extends React.Component {
     hasError: false,
     errorMessage: '',
     voted: false,
+    author_id: '',
   };
 
   async componentDidMount() {
     try {
       const article = await getArticleById(this.props.article_id);
-
+      const author_id = article.username;
+      console.log(author_id);
       this.setState({
         article,
         isLoading: false,
         username: this.props.username,
+        author_id,
       });
     } catch (error) {
       const {

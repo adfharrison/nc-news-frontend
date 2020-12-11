@@ -40,6 +40,7 @@ class ArticleCard extends React.Component {
         <Link
           to={`/articles/${this.props.data.article_id}`}
           username={this.props.username}
+
           //rerenderList={this.props.rerenderList}
         >
           <button className='cardButton'>Click to see article </button>
