@@ -14,6 +14,7 @@ class Login extends React.Component {
     updateSuccess: false,
     isLoading: true,
     showSignup: false,
+    isLoggedIn: false,
   };
 
   async componentDidMount() {
@@ -22,7 +23,7 @@ class Login extends React.Component {
       const usernames = users.map((user) => {
         return user.username;
       });
-      this.setState({ usernames, isLoading: false });
+      this.setState({ usernames, isLoading: false, isLoggedIn: false });
     } catch (error) {
       console.log(error);
     }

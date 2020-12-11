@@ -1,5 +1,7 @@
 .loginContainer {
-  background-color: rgb(200, 204, 207);
+  background-color: #20bf55;
+  background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+
   width: 90%;
   margin: 0 auto;
 }
@@ -33,7 +35,6 @@
   align-content: center;
 }
 .showSignup {
-  border: solid;
 }
 
 .loginButton {

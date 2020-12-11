@@ -1,3 +1,7 @@
 $lapis-lazuli: rgba(31, 87, 132, 1);
 $glaucous: rgba(104, 131, 186, 1);
 $light-gray: rgba(214, 214, 214, 1);
+
+
+background-color #20bf55;
+background-image linear-gradient(315deg, #20bf55 0%, #01baef 74%);

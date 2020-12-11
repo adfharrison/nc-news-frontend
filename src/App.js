@@ -42,9 +42,11 @@ class App extends React.Component {
   };
 
   logout = () => {
-    this.setState({ isLoggedIn: false });
-    localStorage.setItem('state', JSON.stringify(this.state));
+    const stateToMemory = this.state;
+    stateToMemory.isLoggedIn = false;
+    localStorage.setItem('state', JSON.stringify(stateToMemory));
     navigate('/');
+    this.setState({ isLoggedIn: false });
   };
   render() {
     // if (!this.state.isLoggedIn) {
