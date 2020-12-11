@@ -52,7 +52,11 @@ class AddComment extends React.Component {
               onChange={(event) => this.handleChange(event)}
             ></textarea>
           </label>
-          <button className='commentSubmitButton' type='submit'>
+          <button
+            className='commentSubmitButton'
+            type='submit'
+            disabled={this.state.body.length < 1}
+          >
             Send
           </button>
         </form>

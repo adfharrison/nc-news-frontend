@@ -15,6 +15,7 @@ class SingleArticle extends React.Component {
     commentAdded: false,
     hasError: false,
     errorMessage: '',
+    voted: false,
   };
 
   async componentDidMount() {
@@ -60,6 +61,7 @@ class SingleArticle extends React.Component {
     this.setState((currentState) => {
       let newState = currentState;
       newState.article.votes = this.state.article.votes + 0.5;
+      newState.voted = true;
 
       return newState;
     });
@@ -77,6 +79,7 @@ class SingleArticle extends React.Component {
     this.setState((currentState) => {
       let newState = currentState;
       newState.article.votes = this.state.article.votes - 0.5;
+      newState.voted = true;
 
       return newState;
     });
@@ -99,6 +102,7 @@ class SingleArticle extends React.Component {
             article={article}
             upVote={this.upVote}
             downVote={this.downVote}
+            voted={this.state.voted}
           />
 
           {this.state.showComments && (

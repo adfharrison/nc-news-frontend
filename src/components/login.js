@@ -87,7 +87,8 @@ class Login extends React.Component {
     } else {
       return (
         <div className='loginContainer'>
-          <h1 className='loginTitle'>Login</h1>
+          <h1 className='loginTitle'>Northcoders News</h1>
+          <h2 className='loginSubtitle'>Login</h2>
           <LoginRender
             handleUserSubmit={this.handleUserSubmit}
             handleChange={this.handleChange}
@@ -104,6 +105,7 @@ class Login extends React.Component {
                 <label htmlFor='username'>
                   Enter New Username
                   <input
+                    className='newUserInfo'
                     type='text'
                     id='newUsername'
                     name='newUsername'
@@ -114,6 +116,7 @@ class Login extends React.Component {
                 <label htmlFor='name'>
                   Enter your name
                   <input
+                    className='newUserInfo'
                     type='text'
                     id='name'
                     name='name'
@@ -124,6 +127,7 @@ class Login extends React.Component {
                 <label htmlFor='avatar_url'>
                   Enter your avatar URL
                   <input
+                    className='newUserInfo'
                     type='text'
                     id='avatar_url'
                     name='avatar_url'

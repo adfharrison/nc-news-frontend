@@ -125,14 +125,22 @@ class AddArticle extends React.Component {
               ></textarea>
             </label>
           </div>
-          <button className='articleSubmitButton' type='submit'>
+          <button
+            className='articleSubmitButton'
+            type='submit'
+            disabled={
+              this.state.title.length < 1 ||
+              this.state.body.length < 1 ||
+              this.state.topic.length < 1
+            }
+          >
             Send
           </button>{' '}
           <div className='submitSuccess'>
             {this.state.newArticle ? (
               <h3>Article succesfully posted!</h3>
             ) : (
-              <h4> Please submit article</h4>
+              <h4> Please complete all fields</h4>
             )}
           </div>
         </form>

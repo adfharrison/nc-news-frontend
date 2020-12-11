@@ -12,6 +12,7 @@ const LoginRender = (props) => {
             <label htmlFor='username'>
               Enter Username
               <input
+                className='usernameInput'
                 type='text'
                 id='username'
                 name='username'
@@ -20,8 +21,11 @@ const LoginRender = (props) => {
               ></input>
             </label>
           </div>
-          <div className='loginButton'>
-            <button type='loginSubmit'> Login </button>
+          <div className='loginButtonContainer'>
+            <button id='loginButton' type='loginSubmit'>
+              {' '}
+              Login{' '}
+            </button>
           </div>
         </form>
       </div>

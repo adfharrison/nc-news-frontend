@@ -1,7 +1,7 @@
 .loginContainer {
   background-color: #20bf55;
   background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
-
+  height: 1000px;
   width: 90%;
   margin: 0 auto;
 }
@@ -34,13 +34,69 @@
   align-items: center;
   align-content: center;
 }
+.userNameTitle {
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+.signup {
+  width: 80%;
+  justify-items: center;
+  align-items: center;
+  align-content: space-around;
+  display: flex;
+  flex-direction: column;
+  background-color: palegoldenrod;
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 5px;
+  z-index: 10;
+  border: solid black 2px;
+  border-radius: 10px;
+}
+.signupEntry {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  align-content: space-around;
+
+  flex-direction: column;
+}
+.loginButtonContainer {
+  font-size: 1.2rem;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.loginSubmit {
+  font-size: 1.2rem;
+}
+.usernameInput {
+  font-size: 1.2rem;
+}
+
+.showSignupButton {
+  font-size: 1.2rem;
+  justify-self: center;
+  margin: 0 auto;
+}
 .showSignup {
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  margin: 5px;
+}
+.newUserInfo {
+  font-size: 1.2rem !important;
+  margin: 5px;
 }
 
 .loginButton {
-  justify-content: center;
-  text-align: center;
-}
-.loginSubmit {
   font-size: 1.2rem;
 }

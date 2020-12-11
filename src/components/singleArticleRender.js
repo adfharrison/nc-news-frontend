@@ -19,11 +19,21 @@ const SingleArticleRender = (props) => {
         <p className='singleArticleBody'> {article.body}...</p>
         <div className='articleVotes'>
           {' '}
-          <button className='downVote' name='decrease' onClick={props.downVote}>
+          <button
+            className='downVote'
+            name='decrease'
+            disabled={props.voted === true}
+            onClick={props.downVote}
+          >
             -
           </button>
           <p className='singleArticleVotes'>Votes: {article.votes}</p>{' '}
-          <button className='upVote' name='increase' onClick={props.upVote}>
+          <button
+            className='upVote'
+            name='increase'
+            disabled={props.voted === true}
+            onClick={props.upVote}
+          >
             +
           </button>
         </div>

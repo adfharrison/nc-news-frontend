@@ -4,6 +4,9 @@ import './css/list.css';
 import './css/comments.css';
 import './css/addArticle.css';
 import './css/singleArticle.css';
+import './css/home.css';
+import './css/loading.css';
+import './css/error.css';
 import React from 'react';
 import { Router, navigate } from '@reach/router';
 
