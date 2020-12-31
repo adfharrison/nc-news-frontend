@@ -1,5 +1,5 @@
 import React from 'react';
-import { getArticleById, changeArticleVotes, getUsers } from './api';
+import { getArticleById, changeArticleVotes } from './api';
 import SingleArticleRender from './singleArticleRender';
 import Loading from './loading';
 import CommentsList from './commentsList';

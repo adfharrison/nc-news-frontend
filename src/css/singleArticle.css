@@ -13,6 +13,11 @@
   border-radius: 10px;
   padding: 5px;
 }
+@media screen and (min-width: 600px) {
+  .singleArticle {
+    width: 55%;
+  }
+}
 
 .singleArticleButton {
   height: 1.5rem;
@@ -20,7 +25,7 @@
   margin: 10px;
 }
 
-.singleArticle {
+/* .singleArticle {
   width: 80%;
   background-color: orange;
   margin: 2rem auto;
@@ -30,7 +35,7 @@
   border: solid black 2px;
   border-radius: 10px;
   padding: 5px;
-}
+} */
 
 .articleVotes {
   display: flex;
