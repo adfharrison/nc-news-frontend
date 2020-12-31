@@ -34,6 +34,13 @@
   align-items: center;
   align-content: center;
 }
+
+@media screen and (min-width: 600px) {
+  .existingUser {
+    width: 55%;
+    margin: 0 auto;
+  }
+}
 .userNameTitle {
   justify-content: center;
   justify-items: center;
@@ -56,6 +63,13 @@
   z-index: 10;
   border: solid black 2px;
   border-radius: 10px;
+}
+
+@media screen and (min-width: 600px) {
+  .signup {
+    width: 55%;
+    margin: 0 auto;
+  }
 }
 .signupEntry {
   display: flex;
@@ -91,6 +105,12 @@
   align-items: center;
   align-content: center;
   margin: 5px;
+}
+@media screen and (min-width: 600px) {
+  .showSignup {
+    width: 55%;
+    margin: 0 auto;
+  }
 }
 .newUserInfo {
   font-size: 1.2rem !important;
