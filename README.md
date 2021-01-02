@@ -8,7 +8,7 @@ This is the front-end to a reddit-style api that allows users
 to add their user account, then browse topics, articles and comments, add their own, delete articles or comments, and up
 or down vote them. They may also edit their own articles or comments.
 
-created using React JS, node and AXIOS .
+created using React JS, node, reach/router and AXIOS .
 
 Developed using mobile-first principles.
 
