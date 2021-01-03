@@ -2,6 +2,8 @@
 
 # URL - https://alans-news.herokuapp.com
 
+when visiting the app, please allwo time for the server to spin up to speed!
+
 ## Summary
 
 This is the front-end to a reddit-style api that allows users
