@@ -17,13 +17,15 @@ class AddArticle extends React.Component {
   }
 
   handleChange(event) {
+    console.log(this.state.existingTopic);
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
   handleExistingTopic(event) {
     const existingTopic = event.target.value;
-    this.setState({ existingTopic });
+
+    this.setState({ topic: existingTopic });
   }
 
   async handleSubmit(event) {
@@ -80,7 +82,7 @@ class AddArticle extends React.Component {
           {/* ADD EXISTING TOPICS HERE */}
           <div className='submitArticleTopic'>
             <label htmlFor='existingTopics' className='formElement'>
-              select existing topic
+              select topic:
               <select
                 className='filterSelect'
                 name='existingTopics'
